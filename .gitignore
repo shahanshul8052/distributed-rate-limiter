@@ -148,3 +148,4 @@ __pycache__/
 venv/
 backend/.env
 
+.DS_Store
