@@ -1,10 +1,16 @@
 from fastapi import FastAPI, Header
 from app.middleware import RateLimitMiddleware
+from app.middleware import metrics_tracker
 
 app = FastAPI(title="ShieldAPI")
 
 # add the rate limit middleware to the app
 app.add_middleware(RateLimitMiddleware)
+
+# define endpoints
+@app.get("/metrics")
+async def get_metrics():
+    return metrics_tracker.get_metrics()
 
 @app.get("/health")
 async def health_check():
